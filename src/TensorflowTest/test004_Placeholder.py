@@ -1,6 +1,6 @@
 #coding=utf8
 import tensorflow as tf
-
+"""tensorflow feed操作"""
 input1 = tf.placeholder(tf.float32)
 #input1 = tf.placeholder(tf.float32,[2,2])
 input2 = tf.placeholder(tf.float32)
