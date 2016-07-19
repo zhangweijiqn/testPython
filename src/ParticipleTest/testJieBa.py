@@ -24,9 +24,17 @@ def test1():
 def test2():
     # 测试词性标注
     import jieba.posseg as pseg
-    words = pseg.cut("我爱北京天安门")
+    words = pseg.cut("病毒性感冒")
     for word, flag in words:
         print('%s %s' % (word, flag))
 
+def test3():
+    #测试自定义词典
+    jieba.load_userdict("/home/zhangwj/MyProjects/testProjects/TestLanguageTech/testPython/src/ParticipleTest/dict.txt")
+    seg_list = jieba.cut("病毒性感冒", cut_all=False)  #字典中同时含有病毒，性，感冒，病毒性感冒
+    print("Default Mode: " + "/ ".join(seg_list))
+    # Default Mode: 病毒性感冒
+    #在default mode下，进行的是最大匹配
+
 if __name__=='__main__':
-    test2()
+    test3()
