@@ -23,6 +23,7 @@ def test1():
 
 def test2():
     # 测试词性标注
+    # 标记代表的含义参考：http://fhqllt.iteye.com/blog/947917
     import jieba.posseg as pseg
     words = pseg.cut("病毒性感冒")
     for word, flag in words:
