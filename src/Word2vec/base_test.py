@@ -50,13 +50,17 @@ def testWord2Vec():
 
 def testWord2Cluter():
     """Cluster"""
-    #Do the clustering of the vectors based on the trained model.
-    #That created a text8-clusters.txt with the cluster for every word in the vocabulary
+    # Do the clustering of the vectors based on the trained model.
+    # That created a text8-clusters.txt with the cluster for every word in the vocabulary
     word2vec.word2clusters('/D/test/text8/text8', '/D/test/text8/text8-clusters', 100, verbose=True)
     clusters = word2vec.load_clusters('/Users/drodriguez/Downloads/text8-clusters')
     print clusters['dog']
     print clusters.get_words_on_cluster(90).shape
     print clusters.get_words_on_cluster(90)[:10]
+
+def testDoc2Vec():
+    word2vec.doc2vec('/D/test/text8/text8', '/D/test/text8/text8-doc', 100, verbose=True)
+
 
 def testWord2Vec2():
     #Train the model using the word2phrase output.
@@ -88,7 +92,7 @@ def testWord2Vec2():
 
 
     #Since we trained the model with the output of word2phrase we can ask for similarity of "phrases"
-    indexes, metrics = model.cosine('los_angeles')  #单词的索引和余弦相似度
+    indexes, metrics = model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .cosine('los_angeles')  #单词的索引和余弦相似度
     print model.generate_response(indexes, metrics).tolist()  #单词和余弦相似度
 
 
@@ -96,4 +100,4 @@ def testWord2Vec2():
     indexes, metrics = model.analogy(pos=['king', 'woman'], neg=['man'], n=10)
     print model.generate_response(indexes, metrics).tolist()
 
-testWord2Vec2()
+testDoc2Vec()

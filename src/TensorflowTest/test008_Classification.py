@@ -43,7 +43,7 @@ sess = tf.Session()
 sess.run(tf.initialize_all_variables())
 
 for i in range(1000):
-    batch_xs, batch_ys = mnist.train.next_batch(100)
+    batch_xs, batch_ys = mnist.train.next_batch(100)    #batch-SGD，每次取一批来进行梯度下降训练
     sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys})
     if i % 1 == 0:
         print(compute_accuracy(

@@ -1,7 +1,6 @@
 #encoding=utf8
 # https://github.com/eclipse-du/glove_py_model_load/blob/master/glove_dist.py
 # 直接读取Glove生成的vector查找同义词/聚类
-# 训练代码在train.sh中，该文件要在源码根目录https://github.com/stanfordnlp/GloVe下执行
 import numpy as np
 from sklearn.cluster import k_means
 import datetime
@@ -59,6 +58,7 @@ def testSimilarAndCluster():
     print 'Time:', (endtime - starttime).seconds,'s'
 
 def train():
+    # 训练代码在train.sh中，该文件要在源码根目录https://github.com/stanfordnlp/GloVe下执行
     pass
 
 if __name__ == "__main__":
