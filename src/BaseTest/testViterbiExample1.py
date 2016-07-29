@@ -1,6 +1,7 @@
 #coding=utf8
 """
 test viterbi algorithm 9（HMM）
+医生病人案例
 reference: https://zh.wikipedia.org/wiki/%E7%BB%B4%E7%89%B9%E6%AF%94%E7%AE%97%E6%B3%95
 """
 
