@@ -73,7 +73,6 @@ def viterbi(obs, states, start_p, trans_p, emit_p):
     (prob, state) = max([(V[len(obs) - 1][y], y) for y in states])
     return (prob, path[state])
 
-
 def example():
     return viterbi(observations,
                    states,
