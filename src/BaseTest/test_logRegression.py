@@ -30,7 +30,7 @@ def trainLogRegres(train_x, train_y, opts):
             weights = weights + alpha * train_x.transpose() * error     # dot between vector train_x and error according to formula
         elif opts['optimizeType'] == 'stocGradDescent': # stochastic gradient descent
             for i in range(numSamples):
-                output = sigmoid(train_x[i, :] * weights)    # numpy用法，取[ [],[],[]]中元素
+                output = sigmoid(train_x[i, :] * weights)    # numpy用法，取[ [],[],[] ]中元素
                 error = train_y[i, 0] - output
                 weights = weights + alpha * train_x[i, :].transpose() * error
         elif opts['optimizeType'] == 'smoothStocGradDescent': # smooth stochastic gradient descent
@@ -95,7 +95,7 @@ def loadData():
     fileIn = open('/home/zhangwj/MyProjects/testProjects/TestLanguageTech/testPython/src/resources/test_data.txt')
     for line in fileIn.readlines():
         lineArr = line.strip().split()
-        train_x.append([1.0, float(lineArr[0]), float(lineArr[1])])
+        train_x.append([1.0, float(lineArr[0]), float(lineArr[1])]) #1.0是(1,x1,x2,...,xn)中的1
         train_y.append(float(lineArr[2]))
     return mat(train_x), mat(train_y).transpose()
 
