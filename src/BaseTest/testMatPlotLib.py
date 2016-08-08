@@ -62,5 +62,14 @@ def testDynamic():
         lines = ax.plot(x_data, y_data, 'r-', lw=3)
         plt.pause(0.2)
 
+def baseTest():
+    s0 = np.arange(-500,500,1)
+    s1 = np.random.randn(1000)
+    s2 = np.random.randn(1000)/np.sqrt(1000)
+
+    plt.scatter(s0, s1)
+    plt.show()
+
 if __name__=='__main__':
-    testDynamic()
+    # testDynamic()
+    baseTest()

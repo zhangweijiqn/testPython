@@ -1,8 +1,9 @@
 #coding=utf8
 import numpy as np
-sizes = [2,3,1]
+sizes = [4,6,1]
 print sizes[:-1]
 print sizes[1:]
+# print sizes[1,:]
 print zip(sizes[:-1],sizes[1:])
 print np.random.randn(10)   #Return a sample (or samples) from the "standard normal" distribution. parameters are dimension(均值为0,方差为1的高斯分布)
 print np.random.randn(2,3)
@@ -17,3 +18,5 @@ biases = [np.random.randn(y,1) for y in sizes[1:]]
 print biases
 
 
+weights = [np.random.randn(y, x)/np.sqrt(x) for x, y in zip(sizes[:-1],sizes[1:])]
+print weights
