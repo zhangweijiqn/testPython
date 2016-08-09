@@ -28,10 +28,11 @@ def bias_variable(shape):
 
 def conv2d(x, W):
     # stride [1, x_movement, y_movement, 1]
-    # Must have strides[0] = strides[3] = 1
+    # Must have strides[0] = strides[3] = 1， strides=[]，两端固定为1，中间x=1,y=1
     return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
 
 def max_pool_2x2(x):
+    # ksize [1, x_window, y_window  , 1]
     # stride [1, x_movement, y_movement, 1]
     return tf.nn.max_pool(x, ksize=[1,2,2,1], strides=[1,2,2,1], padding='SAME')
 
@@ -43,7 +44,7 @@ x_image = tf.reshape(xs, [-1, 28, 28, 1])   #sample number, x,y,chanel （灰度
 # print(x_image.shape)  # [n_samples, 28,28,1]
 
 ## conv1 layer ##
-W_conv1 = weight_variable([5, 5, 1,32]) # patch 5x5, in size 1, out size 32
+W_conv1 = weight_variable([5, 5, 1,32]) # [filter_height, filter_width, in_channels, out_channels]
 b_conv1 = bias_variable([32])
 h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1) # output size 28x28x32
 h_pool1 = max_pool_2x2(h_conv1)                                         # output size 14x14x32
@@ -57,10 +58,10 @@ h_pool2 = max_pool_2x2(h_conv2)                                         # output
 ## func1 layer ##
 W_fc1 = weight_variable([7*7*64, 1024])
 b_fc1 = bias_variable([1024])
-# [n_samples, 7, 7, 64] ->> [n_samples, 7*7*64]
-h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64])
+
+h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64])    # [n_samples, 7, 7, 64] ->> [n_samples, 7*7*64]
 h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)
-h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
+h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)    #dropout防止过拟合
 
 ## func2 layer ##
 W_fc2 = weight_variable([1024, 10])
