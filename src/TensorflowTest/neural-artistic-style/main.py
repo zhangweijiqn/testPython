@@ -1,5 +1,7 @@
 #https://github.com/ckmarkoh/neuralart_tensorflow
-#two pictures's must be the same
+# vgg net paper: https://arxiv.org/pdf/1409.1556.pdf
+# vgg net application: http://glacier.iego.net/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%88%9D%E7%AA%A5-vgg19%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/
+#two pictures's(content and style) must be the same
 import numpy as np
 import scipy.io
 import scipy.misc
@@ -9,8 +11,7 @@ import tensorflow as tf
 IMAGE_W = 800
 IMAGE_H = 600
 CONTENT_IMG =  './images/cat.jpg'
-# CONTENT_IMG =  './images/yao.png'
-STYLE_IMG = './images/StarryNight.jpg'
+STYLE_IMG = './images/style.jpg'
 OUTOUT_DIR = './results'
 OUTPUT_IMG = 'results.png'
 VGG_MODEL = '/D/test/imagenet-vgg-verydeep-19.mat'  #if vgg file doesn't exist, this file must be downloaded first.
