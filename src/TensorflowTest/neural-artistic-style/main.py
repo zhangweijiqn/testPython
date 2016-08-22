@@ -8,12 +8,12 @@ import tensorflow as tf
 
 IMAGE_W = 800
 IMAGE_H = 600
-# CONTENT_IMG =  './images/cat.jpg'
-CONTENT_IMG =  './images/yao.png'
+CONTENT_IMG =  './images/cat.jpg'
+# CONTENT_IMG =  './images/yao.png'
 STYLE_IMG = './images/StarryNight.jpg'
 OUTOUT_DIR = './results'
 OUTPUT_IMG = 'results.png'
-VGG_MODEL = '/D/test/imagenet-vgg-verydeep-19.mat'
+VGG_MODEL = '/D/test/imagenet-vgg-verydeep-19.mat'  #if vgg file doesn't exist, this file must be downloaded first.
 INI_NOISE_RATIO = 0.7
 STYLE_STRENGTH = 500
 ITERATION = 500
