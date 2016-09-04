@@ -19,7 +19,7 @@ noise = np.random.normal(0, 0.05, x_data.shape)
 y_data = np.square(x_data) - 0.5 + noise
 
 # define placeholder for inputs to network
-xs = tf.placeholder(tf.float32, [None, 1]) #                                               placeHolder shap
+xs = tf.placeholder(tf.float32, [None, 1]) #                                               placeHolder shape
 ys = tf.placeholder(tf.float32, [None, 1])
 
 # add hidden layer
