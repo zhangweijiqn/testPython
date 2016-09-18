@@ -7,13 +7,22 @@ pd.set_option('display.mpl_style', 'default')  # Make the graphs a bit prettier
 figsize(15, 5)
 
 # data with title in csv file
-broken_df = pd.read_csv('../resources/train_titanic.csv')
+df = pd.read_csv('../resources/train_titanic.csv')
 
 # fixed_df = pd.read_csv('../resources/bikes.csv', sep=';', encoding='latin1', parse_dates=['Date'], dayfirst=True, index_col='Date')
-print broken_df.shape
+print df.shape
+print df.info
 
 # Look at the first 3 rows
-print broken_df[:3]
+print df[:3]
+
+print df['Name']
+
+#Age列的前10行
+df['Age'][0:10]
+
+# 过滤缺失值
+df[df['Age'].isnull()][['Sex', 'Pclass', 'Age']]
 
 
-print broken_df['Name']
+
