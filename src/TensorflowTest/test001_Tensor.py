@@ -84,6 +84,10 @@ def testTensor2():
     vec = tf.random_uniform([5],-1.0,1.0)   #-1到1之间，5个元素的向量
     print vec.eval()
 
+def testData():
+    x_data = np.linspace(-1,1,300)[:, np.newaxis]
+    print x_data.shape
 # testNumpy()
 # testTensor()
-testTensor2()
+# testTensor2()
+testData()
