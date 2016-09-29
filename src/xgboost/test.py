@@ -9,8 +9,8 @@
 
 import xgboost as xgb   #在这里还要手工在IDEA中install一下
 # read in data
-dtrain = xgb.DMatrix('/home/zhangwj/Applications/XGBoost/xgboost/demo/data/agaricus.txt.train')
-dtest = xgb.DMatrix('/home/zhangwj/Applications/XGBoost/xgboost/demo/data/agaricus.txt.test')
+dtrain = xgb.DMatrix('/home/zhangwj/Applications/xgboost/demo/data/agaricus.txt.train')
+dtest = xgb.DMatrix('/home/zhangwj/Applications/xgboost/demo/data/agaricus.txt.test')
 # specify parameters via map
 param = {'max_depth':2, 'eta':1, 'silent':1, 'objective':'binary:logistic' }
 num_round = 2
