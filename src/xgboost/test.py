@@ -6,15 +6,23 @@
 # cd python-package;  sudo python setup.py install
 
 #get started: https://github.com/dmlc/xgboost/blob/master/doc/get_started/index.md
-
+from __future__ import print_function
 import xgboost as xgb   #在这里还要手工在IDEA中install一下
-# read in data
-dtrain = xgb.DMatrix('/home/zhangwj/Applications/xgboost/demo/data/agaricus.txt.train')
-dtest = xgb.DMatrix('/home/zhangwj/Applications/xgboost/demo/data/agaricus.txt.test')
-# specify parameters via map
-param = {'max_depth':2, 'eta':1, 'silent':1, 'objective':'binary:logistic' }
-num_round = 2
-bst = xgb.train(param, dtrain, num_round)
-# make prediction
-preds = bst.predict(dtest)
-print preds
+
+
+def testTrain():
+    # read in data
+    dtrain = xgb.DMatrix('/home/zhangwj/Applications/xgboost/demo/data/agaricus.txt.train')
+    dtest = xgb.DMatrix('/home/zhangwj/Applications/xgboost/demo/data/agaricus.txt.test')
+    # specify parameters via map
+    param = {'max_depth':2, 'eta':1, 'silent':1, 'objective':'binary:logistic' }
+    num_round = 2
+    bst = xgb.train(param, dtrain, num_round)
+    # make prediction
+    preds = bst.predict(dtest)
+    print(preds)
+
+def testGridSearch():
+    pass
+
+testGridSearch()
