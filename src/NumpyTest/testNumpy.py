@@ -35,8 +35,9 @@ a.size  # 数组的大小，也就是元素的个数
 a.itemsize  # 数组中每个元素的字节大小
 
 a.sum(axis=0)   # 计算每一列的和
-a.max(axis=0) # 获取每一行的最小值
-a.min() # 计算每一行的累积和
+a.max(axis=0) # 获取每一行的最大值
+a.max() #获取所有元素的最大值
+a.min(axis=0) # 计算每一列的最小值
 a.transpose()
 a.ravel() # 平坦化数组
 
@@ -50,13 +51,12 @@ b.size  # 12
 c = np.array([[1, 2, 3, 4], [4, 5, 6, 7], [7, 8, 9, 10]], dtype=np.float)
 
 # 上面的例子都是先创建一个Python序列，然后通过array函数将其转换为数组,NumPy提供了很多专门用来创建数组的函数。
-from numpy import *
-# 用函数zeros可创建一个全是0的数组,默认创建的数组类型(dtype)都是float64。
-d = zeros((3, 4))
+# 用函数zeros可创建一个全是0的数组,默认创建的数组类型(dtype)都是float64。参数为维度，用小括号括起来
+d = np.zeros((3, 4))
 # 用函数ones可创建一个全为1的数组
-d = ones((2, 3, 4), dtype=int16)
+d = np.ones((2, 3, 4), dtype=np.int16)
 # 函数empty创建一个内容随机并且依赖与内存状态的数组。
-d = empty((2, 3))
+d = np.empty((2, 3))
 
 # 产生一个长度为10，元素值为0-1的随机数的数组
 x = np.random.rand(10)  # 产生一个长度为10，元素值为0-1的随机数的数组
@@ -64,7 +64,7 @@ x = np.random.rand(10)  # 产生一个长度为10，元素值为0-1的随机数�
 np.arange(0, 1, 0.1)  # array([ 0. ,  0.1,  0.2,  0.3,  0.4,  0.5,  0.6,  0.7,  0.8,  0.9])
 np.arange(
     24)  # array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,17, 18, 19, 20, 21, 22, 23])
-np.arange(7, dtype=uint16)
+np.arange(7, dtype=np.uint16)
 # linspace函数通过指定开始值、终值和元素个数来创建一维数组，可以通过endpoint关键字指定是否包括终值，缺省设置是包括终值
 np.linspace(0, 1, 12)
 # logspace函数和linspace类似，不过它创建等比数列，下面的例子产生1(10^0)到100(10^2)、有20个元素的等比数列
