@@ -224,6 +224,21 @@ c.base is a  # True,c是a持有数据的镜像
 # 深复制
 d = a.copy()  # 这个复制方法完全复制数组和它的数据。
 
+
+# np.newaxis用法
+#一维数组
+a = np.arange(1,10,1)
+aa = a[:,np.newaxis]    #取所有值并增加一维
+#二维数组
+b = np.array([[1, 2, 3, 4], [4, 5, 6, 7], [7, 8, 9, 10]])
+bb = b[:,np.newaxis,2]
+#取所有行的第３列，并增加一维
+#等价于bb = b[:,2,np.newaxis]
+
+
+
+
+
 sizes = [4, 6, 1]
 print sizes[:-1]
 print sizes[1:]
