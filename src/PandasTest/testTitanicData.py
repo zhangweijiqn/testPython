@@ -16,7 +16,7 @@ def data_preprocess(path,train=True):
     x_data.Age.fillna(value=random.randint(1, 100),inplace=True)    # inplace，replace original column data.
     x_data.Embarked.fillna('C',inplace=True)
     x_data.Embarked = x_data.Embarked.map( {'C': 1, 'S':2, 'Q':3, '':4 } )
-
+    x_data.Fare.fillna(value=random.randint(0,20),inplace=True)
     # add log(f) as a new feature for each f in training set.
     # to avoid log0, each log(x) is changed to log(x+1), x+0.1 will be better
     x_data['Pclass_Log'] = x_data['Pclass'].map(lambda x: math.log(x))

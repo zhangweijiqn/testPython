@@ -53,5 +53,3 @@ df['Gender'] = df['Sex'].map( {'female': 0, 'male': 1} ).astype(int)
 
 
 
-
-

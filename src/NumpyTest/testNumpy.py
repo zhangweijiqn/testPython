@@ -58,6 +58,9 @@ d = np.ones((2, 3, 4), dtype=np.int16)
 # 函数empty创建一个内容随机并且依赖与内存状态的数组。
 d = np.empty((2, 3))
 
+#判断数据中是否有nan
+np.isnan(d).any()
+
 # 产生一个长度为10，元素值为0-1的随机数的数组
 x = np.random.rand(10)  # 产生一个长度为10，元素值为0-1的随机数的数组
 np.random.rand(2, 3, 4)
