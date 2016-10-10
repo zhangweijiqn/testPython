@@ -2,13 +2,13 @@
 import numpy as np
 
 from sklearn.datasets import make_blobs
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, log_loss
 
 np.random.seed(0)
 
 
-def getData():
-    # Generate data
+def getCData():
+    # Generate data for classification
     X, y = make_blobs(n_samples=1000, n_features=20, centers=3, random_state=42, cluster_std=5.0)
     X_train, y_train = X[:600], y[:600]
     X_valid, y_valid = X[600:800], y[600:800]
@@ -16,6 +16,15 @@ def getData():
     X_test, y_test = X[800:], y[800:]
     return X_train_valid, y_train_valid, X_test, y_test
 
+def getRData():
+    import numpy as np
+    n_samples, n_features = 50, 5
+    np.random.seed(0)
+    y = np.random.randn(n_samples)
+    X = np.random.randn(n_samples, n_features)
+    y2 = np.random.randn(n_samples)
+    X2 = np.random.randn(n_samples, n_features)
+    return X,y,X2,y2
 
 def testRF():
     # http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#sklearn.ensemble.RandomForestClassifier
@@ -40,6 +49,9 @@ def testRF():
                                  class_weight=None)  # n_estimators：The number of trees in the forest.
     return clf
 
+
+# SVM的实现有三种,SVC,NuSVC,LinearSVC.SVC是基于libsvm的实现,NuSVC和SVC类似,但是添加了控制支持向量个数的参数,LinearSVC是kernel为linear时的实现,参数更加可调.
+# 多类问题SVC和NuSVC实现one vs one和one vs rest两种, linearSVC仅实现了one vs rest.
 
 def testSVC():
     # http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC
@@ -97,7 +109,7 @@ def testLinearSVC():
                     dual=True,
                     tol=0.0001,
                     C=1.0,
-                    multi_class='ovr',
+                    multi_class='ovr',# LinearSVC implements “one-vs-the-rest” multi-class strategy, thus training n_class models
                     fit_intercept=True,
                     intercept_scaling=1,
                     class_weight=None,
@@ -106,8 +118,33 @@ def testLinearSVC():
                     max_iter=1000)
     return clf
 
-if __name__ == '__main__':
-    X_train, Y_train, X_test, Y_test = getData()
+#There are three different implementations of Support Vector Regression: SVR, NuSVR and LinearSVR.
+# LinearSVR provides a faster implementation than SVR but only considers linear kernels, while NuSVR implements a slightly different formulation than SVR and LinearSVR.
+
+def testSVR():
+    # http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html#sklearn.svm.SVR
+    from sklearn import svm
+    clf = svm.SVR(kernel='rbf',
+                  degree=3,
+                  gamma='auto',
+                  coef0=0.0,
+                  tol=0.001,
+                  C=1.0,
+                  epsilon=0.1,
+                  shrinking=True,
+                  cache_size=200,
+                  verbose=False,
+                  max_iter=-1)
+    return clf
+
+def testNuSVR():
+    pass
+
+def testLinearSVR():
+    pass
+
+def testClassify():
+    X_train, Y_train, X_test, Y_test = getCData()
     # clf = testRF()
     # clf = testSVC()
     # clf = testNuSVC()
@@ -118,3 +155,18 @@ if __name__ == '__main__':
     # clf_probs = clf.predict_proba(X_test)
     # score = log_loss(y_test, clf_probs)
     print accuracy
+
+def testRegress():
+    X_train, Y_train, X_test, Y_test = getRData()
+    clf = testSVR()
+    # clf = testNuSVR()
+    # clf = testLinearSVR()
+    clf.fit(X_train, Y_train)
+    clf_probs = clf.predict(X_test)
+    # Returns the coefficient of determination R^2 of the prediction.
+    score = clf.score(X_test,Y_test, clf_probs)
+    print score
+
+if __name__ == '__main__':
+    # testClassify()
+    testRegress()

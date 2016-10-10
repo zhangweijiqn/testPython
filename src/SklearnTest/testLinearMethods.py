@@ -40,8 +40,9 @@ def testLinearRegression2():
 
     # Train the model using the training sets
     regr.fit(diabetes_X_train, diabetes_y_train)
-
-    # The coefficients
+    score = regr.score(diabetes_X_test,diabetes_y_test) # return R^2
+    print("r2="+score)
+# The coefficients
     print('Coefficients: \n', regr.coef_)
     # The mean squared error
     print("Mean squared error: %.2f"

@@ -1,3 +1,6 @@
+#coding=utf8
+from sklearn.svm import LinearSVC
+
 __author__ = 'zhangwj'
 from pandas.util.testing import DataFrame
 import random
@@ -45,7 +48,19 @@ y = np.array(y_data,np.float32)
 from sklearn.ensemble import RandomForestClassifier
 # Train uncalibrated random forest classifier on whole train and validation
 # data and evaluate on test data
-clf = RandomForestClassifier(n_estimators=50,criterion='entropy')  # n_estimators,The number of trees in the forest.
+# clf = RandomForestClassifier(n_estimators=50,criterion='entropy')  # n_estimators,The number of trees in the forest.
+clf = LinearSVC(penalty='l2',   #The ‘l2’ penalty is the standard used in SVC. The ‘l1’ leads to coef_ vectors that are sparse.
+                loss='squared_hinge',   #Specifies the loss function. ‘hinge’ is the standard SVM loss (used e.g. by the SVC class) while ‘squared_hinge’ is the square of the hinge loss.
+                dual=True,
+                tol=0.0001,
+                C=1.0,
+                multi_class='ovr',
+                fit_intercept=True,
+                intercept_scaling=1,
+                class_weight=None,
+                verbose=0,
+                random_state=None,
+                max_iter=1000)
 clf.fit(X[:], y[:])
 
 path2 = '../resources/test_titanic.csv'
