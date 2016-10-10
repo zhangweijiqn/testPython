@@ -123,6 +123,7 @@ def testLinearSVC():
 
 def testSVR():
     # http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html#sklearn.svm.SVR
+    # SVR参考:http://www.cmlab.csie.ntu.edu.tw/~cyy/learning/tutorials/SVR.pdf
     from sklearn import svm
     clf = svm.SVR(kernel='rbf',
                   degree=3,
