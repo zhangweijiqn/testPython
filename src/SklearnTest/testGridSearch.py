@@ -64,10 +64,10 @@ def testSklearn_GridSearch():
 def testGridSearch():
     d = {"max_depth": [3, 5, 10],"n_estimators": [50,100],"n_jobs":[4]}
     grid = ParameterGrid(d)
-    model_class = RandomForestClassifier
+    model_class = RandomForestClassifier    #将class赋给变量
     for param in grid:
         print param
-        model_instance = model_class(**param)
+        model_instance = model_class(**param)   #调用构造函数
         print model_instance
 
 testGridSearch()
