@@ -47,6 +47,8 @@ def testRF():
                                  verbose=0,
                                  warm_start=False,
                                  class_weight=None)  # n_estimators：The number of trees in the forest.
+    clf.estimators_  #list of DecisionTreeClassifier,获取随机森林中的每棵决策树
+    #其他的Attributes参考API
     return clf
 
 
@@ -118,7 +120,7 @@ def testLinearSVC():
                     max_iter=1000)
     return clf
 
-#There are three different implementations of Support Vector Regression: SVR, NuSVR and LinearSVR.
+# There are three different implementations of Support Vector Regression: SVR, NuSVR and LinearSVR.
 # LinearSVR provides a faster implementation than SVR but only considers linear kernels, while NuSVR implements a slightly different formulation than SVR and LinearSVR.
 
 def testSVR():
