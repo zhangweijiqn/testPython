@@ -4,6 +4,7 @@
 *lib*
 src/main/resources/*.jar
 src/main/resources/data/
+src/main/resources/lfw_home/
 *.iml
 rec.log*
 *.pyc
