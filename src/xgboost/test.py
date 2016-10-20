@@ -15,8 +15,8 @@ def testTrain():
     dtrain = xgb.DMatrix('/home/zhangwj/Applications/xgboost/demo/data/agaricus.txt.train')
     dtest = xgb.DMatrix('/home/zhangwj/Applications/xgboost/demo/data/agaricus.txt.test')
     # specify parameters via map
-    param = {'max_depth':2, 'eta':1, 'silent':1, 'objective':'binary:logistic' }
-    num_round = 2
+    param = {'max_depth':20, 'eta':1, 'silent':1, 'objective':'binary:logistic' }
+    num_round = 100
     bst = xgb.train(param, dtrain, num_round)
     # make prediction
     preds = bst.predict(dtest)
@@ -25,4 +25,8 @@ def testTrain():
 def testGridSearch():
     pass
 
-testGridSearch()
+def testsklearn():
+    from  xgboost import XGBClassifier
+    dtrain = XGBClassifier(max_depth=20, learning_rate=0.1, n_estimators=100, silent=True, objective='binary:logistic', nthread=-1, gamma=0, min_child_weight=1, max_delta_step=0, subsample=1, colsample_bytree=1, colsample_bylevel=1, reg_alpha=0, reg_lambda=1, scale_pos_weight=1, base_score=0.5, seed=0, missing=None)
+
+testTrain()
