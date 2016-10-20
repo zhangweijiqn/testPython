@@ -92,7 +92,7 @@ def Tfidf(filelist) :
     return tf,word
 
 def LDA(tf,word):
-    lda = LatentDirichletAllocation(n_topics=100, max_iter=5,
+    lda = LatentDirichletAllocation(n_topics=30, max_iter=5,
                                 learning_method='online',
                                 learning_offset=50.,
                                 random_state=0)
