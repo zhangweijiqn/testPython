@@ -12,6 +12,7 @@ import sys
 import string
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.decomposition import NMF, LatentDirichletAllocation
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -67,9 +68,12 @@ def Tfidf(filelist) :
         f.close()
         corpus.append(content)
 
-    vectorizer = CountVectorizer()
+    vectorizer = CountVectorizer(max_df=0.95, min_df=2,
+                                 max_features=1000,
+                                 stop_words='english')
+    tf = vectorizer.fit_transform(corpus)
     transformer = TfidfTransformer()
-    tfidf = transformer.fit_transform(vectorizer.fit_transform(corpus))
+    tfidf = transformer.fit_transform(tf)
 
     word = vectorizer.get_feature_names() #所有文本的关键字
     weight = tfidf.toarray()              #对应的tfidf矩阵
@@ -85,6 +89,23 @@ def Tfidf(filelist) :
         for j in range(len(word)) :
             f.write(word[j]+"    "+str(weight[i][j])+"\n")
         f.close()
+    return tf,word
+
+def LDA(tf,word):
+    lda = LatentDirichletAllocation(n_topics=100, max_iter=5,
+                                learning_method='online',
+                                learning_offset=50.,
+                                random_state=0)
+    lda.fit(tf)
+    print_top_words(lda,word,20)
+
+def print_top_words(model, feature_names, n_top_words):
+    for topic_idx, topic in enumerate(model.components_):
+        print("Topic #%d:" % topic_idx)
+        print(" ".join([feature_names[i]
+                        for i in topic.argsort()[:-n_top_words - 1:-1]]))
+    print()
+
 
 if __name__ == "__main__" :
     (allfile,path) = getFilelist(["","/home/zhangwj/scikit_learn_data/docs/"])
@@ -92,4 +113,6 @@ if __name__ == "__main__" :
         print "Using jieba on "+ff
         fenci(ff,path)
 
-    Tfidf(allfile)
+    tf,word = Tfidf(allfile)
+    LDA(tf,word)
+
