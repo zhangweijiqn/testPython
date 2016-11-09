@@ -29,8 +29,8 @@ def testAddTraining():
         u"那么，可依得我两件事?",
         u"三件也依得",
     ])
-    print(deepThought.get_response(u"嗳，渡边君，真喜欢我?")) #语出 The Zen of Python
-    print(deepThought.get_response(u"那还用说?")) #语出 The Zen of Python
+    print(deepThought.get_response(u"真喜欢我?")) #不必完全匹配
+    print(deepThought.get_response(u"那用说?"))
 
 baseTest
-testAddTraining
+testAddTraining()
