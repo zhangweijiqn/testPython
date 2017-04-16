@@ -8,3 +8,4 @@ src/main/resources/lfw_home/
 *.iml
 rec.log*
 *.pyc
+*log*
