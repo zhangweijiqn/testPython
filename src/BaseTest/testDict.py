@@ -22,6 +22,10 @@ sorted(d.items(), lambda x, y: cmp(x[1], y[1]), reverse=True)
 tids = {1: [1, 0.53], 2: [2, 0.56], 3: [3, 0.89]}
 sorted_tids = sorted(tids.items(), lambda x, y: cmp(x[1][1], y[1][1]), reverse=True)
 sorted_tids2 = sorted(tids.items(), lambda x, y: cmp(0.5*x[1][0]+2*x[1][1], 0.5*y[1][0]+2*y[1][1]), reverse=True)
+tids.values()   #[[1, 0.53], [2, 0.56], [3, 0.89]]
+tids.keys()     #[1, 2, 3]
+tids.items()    #[(1, [1, 0.53]), (2, [2, 0.56]), (3, [3, 0.89])]
+
 
 # delete key
 x = {1: 2, 3: 4, 4: 3, 2: 1, 0: 0}
