@@ -1,0 +1,13 @@
+#"#" 和";" 表示注释
+
+[section]
+name:value
+# or name=value
+
+[DEFAULT] #设置默认的变量值，初始化
+default:10
+
+[My Section]
+foodir: %(dir)s/whatever
+dir=frob
+long: this value continues in the next line
